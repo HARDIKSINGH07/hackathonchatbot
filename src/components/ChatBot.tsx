@@ -2,7 +2,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Send } from 'lucide-react';
+import { Send, Smile, Paperclip, Mic } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 type Message = {
   text: string;
@@ -14,6 +15,7 @@ export default function ChatBot() {
     { text: "Hi there! I'm Bile Bot, your mental health companion. I'm here to chat about anxiety, stress, depression, or any other concerns you might have. How are you feeling today?", isUser: false }
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -81,10 +83,12 @@ export default function ChatBot() {
     setInputValue('');
     
     // Simulate typing delay
+    setIsTyping(true);
     setTimeout(() => {
       const botResponse = getBotResponse(inputValue);
       setMessages(prev => [...prev, { text: botResponse, isUser: false }]);
-    }, 1000);
+      setIsTyping(false);
+    }, 1500);
   };
   
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -94,20 +98,30 @@ export default function ChatBot() {
   };
   
   return (
-    <section id="chat" className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center px-3 py-1 mb-4 rounded-full bg-mint/10 text-mint font-medium text-sm">
+    <section id="chat" className="py-16 md:py-24 overflow-hidden relative">
+      <div className="spotlight"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="section-heading">
+          <div className="section-badge bg-mint/10 text-mint">
             <span className="mr-2">💬</span> Chat
           </div>
           <h2 className="text-3xl md:text-4xl font-bold">Talk to Bile Bot</h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Share your thoughts and feelings with our AI mental health companion. We're here to listen and support you.
+          </p>
         </div>
         
-        <div className="max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-lg bg-white">
+        <Card className="max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-lg border-0">
           <div className="bg-gradient-to-r from-cyan to-lavender p-4 flex items-center justify-between">
             <div className="flex items-center">
-              <div className="text-2xl mr-2">🤖</div>
-              <h3 className="font-bold text-white">Bile Bot</h3>
+              <div className="relative mr-3">
+                <div className="text-2xl">🤖</div>
+                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+              </div>
+              <div>
+                <h3 className="font-bold text-white">Bile Bot</h3>
+                <p className="text-white/70 text-xs">Always here to help</p>
+              </div>
             </div>
             <div className="bg-white/20 text-white text-sm px-2 py-1 rounded-full">Online</div>
           </div>
@@ -121,9 +135,24 @@ export default function ChatBot() {
                 {message.text}
               </div>
             ))}
+            {isTyping && (
+              <div className="bot-bubble flex gap-1 max-w-[70px]">
+                <span className="w-2 h-2 bg-white/70 rounded-full animate-pulse"></span>
+                <span className="w-2 h-2 bg-white/70 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></span>
+                <span className="w-2 h-2 bg-white/70 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></span>
+              </div>
+            )}
           </div>
           
           <div className="p-4 bg-white border-t flex gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <Paperclip className="h-4 w-4" />
+            </Button>
+            
             <Input
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
@@ -131,6 +160,23 @@ export default function ChatBot() {
               placeholder="Type your message here..."
               className="rounded-full focus-ring"
             />
+            
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <Smile className="h-4 w-4" />
+            </Button>
+            
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <Mic className="h-4 w-4" />
+            </Button>
+            
             <Button 
               onClick={handleSendMessage} 
               className="rounded-full bg-gradient-to-r from-cyan to-lavender hover:from-cyan-dark hover:to-lavender-dark"
@@ -139,7 +185,7 @@ export default function ChatBot() {
               <Send className="h-4 w-4" />
             </Button>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

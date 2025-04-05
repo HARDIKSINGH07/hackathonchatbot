@@ -99,6 +99,10 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-nunito font-bold;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {
@@ -133,4 +137,68 @@
   .bot-bubble {
     @apply chat-bubble bg-gradient-to-r from-cyan to-cyan-light text-white self-start;
   }
+
+  .floating {
+    @apply animate-float;
+  }
+
+  .pulsing {
+    @apply animate-pulse;
+  }
+
+  .section-heading {
+    @apply text-center mb-12;
+  }
+
+  .section-badge {
+    @apply inline-flex items-center justify-center px-3 py-1 mb-4 rounded-full font-medium text-sm;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r;
+  }
+}
+
+@keyframes spotlight {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.spotlight {
+  position: absolute;
+  top: -150px;
+  left: -100px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(168, 85, 247, 0) 80%);
+  animation: spotlight 10s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spotlight:nth-child(2) {
+  top: 30%;
+  right: -50px;
+  left: auto;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, rgba(14, 165, 233, 0.1) 50%, rgba(14, 165, 233, 0) 80%);
+  animation-delay: 3s;
+}
+
+.spotlight:nth-child(3) {
+  top: auto;
+  bottom: 10%;
+  left: 10%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.3) 0%, rgba(45, 212, 191, 0.1) 50%, rgba(45, 212, 191, 0) 80%);
+  animation-delay: 6s;
 }

@@ -1,18 +1,28 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4 py-3">
         <nav className="flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
-            <div className="text-3xl">🤖</div>
-            <div className="font-nunito font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan to-lavender">
+          <a href="#" className="flex items-center gap-2 group">
+            <div className="text-3xl group-hover:rotate-12 transition-transform">🤖</div>
+            <div className="font-nunito font-bold text-xl text-gradient from-cyan to-lavender">
               Bile Bot
             </div>
           </a>
@@ -33,8 +43,8 @@ export default function Header() {
                 About
               </a>
             </div>
-            <Button className="gen-z-button">
-              Start Chat Now
+            <Button asChild className="gen-z-button">
+              <a href="#chat">Start Chat Now</a>
             </Button>
           </div>
           
@@ -80,8 +90,8 @@ export default function Header() {
             >
               About
             </a>
-            <Button className="w-full gen-z-button" onClick={() => setIsMenuOpen(false)}>
-              Start Chat Now
+            <Button asChild className="w-full gen-z-button" onClick={() => setIsMenuOpen(false)}>
+              <a href="#chat">Start Chat Now</a>
             </Button>
           </div>
         )}
