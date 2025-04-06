@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,12 +11,12 @@ const Footer: React.FC = () => {
               <img 
                 src="/lovable-uploads/05eee2f0-67b3-48f5-b944-fb540d697518.png" 
                 alt="MindSaarthi Logo" 
-                className="h-8 mr-2" 
+                className="h-12 mr-2" 
               />
               <img 
                 src="/lovable-uploads/94bbd34e-8cd5-4d14-8495-401ab47a243b.png" 
                 alt="MindSaarthi Text" 
-                className="h-6" 
+                className="h-9" 
               />
             </div>
             <p className="text-gray-600 mb-4">

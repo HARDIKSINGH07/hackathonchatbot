@@ -7,16 +7,16 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 glass-morphism bg-white/70">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-3">
           <img 
             src="/lovable-uploads/05eee2f0-67b3-48f5-b944-fb540d697518.png" 
             alt="MindSaarthi Logo" 
-            className="h-10 md:h-12" 
+            className="h-14 md:h-16" 
           />
           <img 
             src="/lovable-uploads/94bbd34e-8cd5-4d14-8495-401ab47a243b.png" 
             alt="MindSaarthi Text" 
-            className="h-6 md:h-8" 
+            className="h-9 md:h-11" 
           />
         </Link>
         
