@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-100 pt-12 pb-6 px-4">
+    <footer className="bg-white pt-12 pb-6 px-4">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center mb-4">
               <img 
-                src="/lovable-uploads/05eee2f0-67b3-48f5-b944-fb540d697518.png" 
+                src="/lovable-uploads/5cfa53ee-6a71-479d-bb9c-acfc2e2b1d81.png" 
                 alt="MindSaarthi Logo" 
-                className="h-16 mr-3" 
+                className="h-20 mr-4" 
               />
               <img 
-                src="/lovable-uploads/94bbd34e-8cd5-4d14-8495-401ab47a243b.png" 
+                src="/lovable-uploads/e387d0c2-5cd5-4694-83ea-46a76bfc8e2d.png" 
                 alt="MindSaarthi Text" 
-                className="h-12" 
+                className="h-14" 
               />
             </div>
             <p className="text-gray-600 mb-4">
