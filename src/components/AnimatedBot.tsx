@@ -1,19 +1,20 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Brain } from 'lucide-react';
 
 interface AnimatedBotProps {
   size?: number;
   className?: string;
 }
 
-const AnimatedBot: React.FC<AnimatedBotProps> = ({ size = 100, className = '' }) => {
+const AnimatedBot: React.FC<AnimatedBotProps> = ({ size = 100, className = "" }) => {
   const [isWinking, setIsWinking] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
     setIsWinking(true);
+    
+    // Navigate to chat page after wink animation
     setTimeout(() => {
       navigate('/chat');
     }, 500);
@@ -21,16 +22,26 @@ const AnimatedBot: React.FC<AnimatedBotProps> = ({ size = 100, className = '' })
 
   return (
     <div 
-      className={`relative cursor-pointer animate-float flex items-center justify-center ${className}`}
+      className={`cursor-pointer animate-float ${className}`}
       onClick={handleClick}
       style={{ width: size, height: size }}
     >
-      <div className="rounded-full bg-gradient-to-br from-mindpink to-mindblue p-4 shadow-lg">
-        <div className={`${isWinking ? 'animate-wink' : ''}`}>
-          <Brain size={size * 0.7} className="text-white" />
+      <div className="relative bg-gradient-to-br from-mindblue to-mindpink rounded-full flex items-center justify-center h-full w-full shadow-lg">
+        <div className="absolute top-[30%] left-[25%] w-[15%] h-[15%] bg-white rounded-full">
+          {/* Left eye */}
+          <div className={`absolute inset-0 bg-mindblue rounded-full ${isWinking ? 'animate-wink' : ''}`}></div>
+        </div>
+        <div className="absolute top-[30%] right-[25%] w-[15%] h-[15%] bg-white rounded-full">
+          {/* Right eye */}
+          <div className="absolute inset-0 bg-mindblue rounded-full"></div>
+        </div>
+        <div className="absolute bottom-[30%] w-[40%] h-[10%] bg-white rounded-full">
+          {/* Mouth */}
+          <div className="absolute inset-0 rounded-full">
+            <div className="h-full w-full bg-gradient-to-r from-mindblue to-mindpink rounded-t-full"></div>
+          </div>
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-full h-full rounded-full bg-white opacity-20 animate-pulse"></div>
     </div>
   );
 };
