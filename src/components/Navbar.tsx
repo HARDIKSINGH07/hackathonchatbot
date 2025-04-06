@@ -11,12 +11,12 @@ const Navbar: React.FC = () => {
           <img 
             src="/lovable-uploads/05eee2f0-67b3-48f5-b944-fb540d697518.png" 
             alt="MindSaarthi Logo" 
-            className="h-14 md:h-16" 
+            className="h-16 md:h-20" 
           />
           <img 
             src="/lovable-uploads/94bbd34e-8cd5-4d14-8495-401ab47a243b.png" 
             alt="MindSaarthi Text" 
-            className="h-9 md:h-11" 
+            className="h-10 md:h-14" 
           />
         </Link>
         
