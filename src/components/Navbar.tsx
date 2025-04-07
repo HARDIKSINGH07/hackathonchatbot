@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 
 const Navbar: React.FC = () => {
   return (
@@ -26,13 +25,6 @@ const Navbar: React.FC = () => {
           <Link to="/resources" className="text-gray-700 hover:text-mindblue transition-colors">Resources</Link>
           <Link to="/find-therapist" className="text-gray-700 hover:text-mindblue transition-colors">Find a Therapist</Link>
         </div>
-        
-        <Button 
-          className="bg-gradient-to-r from-mindblue to-mindpink text-white hover:shadow-lg transition-all"
-          asChild
-        >
-          <Link to="/chat">Start Talking</Link>
-        </Button>
       </div>
     </nav>
   );
