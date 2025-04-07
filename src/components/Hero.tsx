@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import AnimatedBot from './AnimatedBot';
 
 const Hero: React.FC = () => {
   return (
@@ -18,9 +17,18 @@ const Hero: React.FC = () => {
         whenever you need someone to talk to about stress, anxiety, or your emotions.
       </p>
       
-      <AnimatedBot size={150} className="my-8" />
+      <div className="w-full max-w-3xl mb-8">
+        <iframe 
+          src="https://my.spline.design/robottutorialinteractiveeventscopy-344d664a261de05ac0922bf290f6d704/" 
+          frameBorder="0" 
+          width="100%" 
+          height="600px"
+          title="MindSaarthi 3D Bot"
+          className="rounded-lg shadow-lg"
+        ></iframe>
+      </div>
       
-      <p className="text-sm text-gray-500 mb-6">Click on the bot to start a conversation</p>
+      <p className="text-sm text-gray-500 mb-6">Interact with the 3D model above!</p>
       
       <div className="flex flex-col sm:flex-row gap-4">
         <Button 
