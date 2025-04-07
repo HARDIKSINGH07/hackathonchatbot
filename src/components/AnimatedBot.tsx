@@ -7,7 +7,7 @@ interface AnimatedBotProps {
   className?: string;
 }
 
-const AnimatedBot: React.FC<AnimatedBotProps> = ({ size = 100, className = "" }) => {
+const AnimatedBot: React.FC<AnimatedBotProps> = ({ size = 120, className = "" }) => {
   const [isWinking, setIsWinking] = useState(false);
   const navigate = useNavigate();
 
@@ -26,20 +26,19 @@ const AnimatedBot: React.FC<AnimatedBotProps> = ({ size = 100, className = "" })
       onClick={handleClick}
       style={{ width: size, height: size }}
     >
-      <div className="relative bg-gradient-to-br from-mindblue to-mindpink rounded-full flex items-center justify-center h-full w-full shadow-lg">
-        <div className="absolute top-[30%] left-[25%] w-[15%] h-[15%] bg-white rounded-full">
+      <div className="relative bg-white rounded-full flex items-center justify-center h-full w-full shadow-md">
+        <img 
+          src="/lovable-uploads/5cfa53ee-6a71-479d-bb9c-acfc2e2b1d81.png"
+          alt="MindSaarthi Bot"
+          className="w-full h-full object-contain p-1"
+        />
+        <div className="absolute top-[30%] left-[25%] w-[15%] h-[15%] bg-transparent rounded-full">
           {/* Left eye */}
           <div className={`absolute inset-0 bg-mindblue rounded-full ${isWinking ? 'animate-wink' : ''}`}></div>
         </div>
-        <div className="absolute top-[30%] right-[25%] w-[15%] h-[15%] bg-white rounded-full">
+        <div className="absolute top-[30%] right-[25%] w-[15%] h-[15%] bg-transparent rounded-full">
           {/* Right eye */}
           <div className="absolute inset-0 bg-mindblue rounded-full"></div>
-        </div>
-        <div className="absolute bottom-[30%] w-[40%] h-[10%] bg-white rounded-full">
-          {/* Mouth */}
-          <div className="absolute inset-0 rounded-full">
-            <div className="h-full w-full bg-gradient-to-r from-mindblue to-mindpink rounded-t-full"></div>
-          </div>
         </div>
       </div>
     </div>

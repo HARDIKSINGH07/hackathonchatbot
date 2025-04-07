@@ -6,8 +6,8 @@ import AnimatedBot from './AnimatedBot';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-10 px-4 text-center">
-      <div className="absolute inset-0 bg-gradient-to-b from-mindblue/10 to-mindpink/5 -z-10"></div>
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-28 pb-10 px-4 text-center">
+      <div className="absolute inset-0 bg-gradient-to-b from-mindblue/5 to-mindpink/5 -z-10"></div>
       
       <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
         Your Mind Deserves <span className="text-gradient">a Friend</span> Too
@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
         whenever you need someone to talk to about stress, anxiety, or your emotions.
       </p>
       
-      <AnimatedBot size={120} className="my-8" />
+      <AnimatedBot size={150} className="my-8" />
       
       <p className="text-sm text-gray-500 mb-6">Click on the bot to start a conversation</p>
       
