@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-4">
+      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+        <Link to="/" className="flex items-center space-x-2">
           <img 
             src="/lovable-uploads/5cfa53ee-6a71-479d-bb9c-acfc2e2b1d81.png" 
             alt="MindSaarthi Logo" 
-            className="h-20 md:h-24" 
+            className="h-12 md:h-16" 
           />
           <img 
             src="/lovable-uploads/e387d0c2-5cd5-4694-83ea-46a76bfc8e2d.png" 
             alt="MindSaarthi Text" 
-            className="h-12 md:h-16" 
+            className="h-8 md:h-10" 
           />
         </Link>
         
