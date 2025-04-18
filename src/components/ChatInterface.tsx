@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -43,14 +42,57 @@ const ChatInterface: React.FC = () => {
     });
   };
 
-  const handleTextToSpeech = (text: string) => {
-    if ('speechSynthesis' in window) {
-      const speech = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(speech);
-    } else {
+  const handleTextToSpeech = async (text: string) => {
+    const ELEVEN_LABS_VOICE_ID = "EXAVITQu4vr4xnSDxMaL"; // Sarah's voice ID
+    
+    try {
+      const apiKey = localStorage.getItem('elevenLabsKey');
+      
+      if (!apiKey) {
+        const key = prompt("Please enter your ElevenLabs API key to enable the sweet AI voice. You can get it from https://elevenlabs.io");
+        if (key) {
+          localStorage.setItem('elevenLabsKey', key);
+        } else {
+          toast({
+            title: "API Key Required",
+            description: "Please provide an ElevenLabs API key to use the voice feature",
+            variant: "destructive"
+          });
+          return;
+        }
+      }
+
+      const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${ELEVEN_LABS_VOICE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'xi-api-key': apiKey || ''
+        },
+        body: JSON.stringify({
+          text: text,
+          model_id: "eleven_multilingual_v2",
+          voice_settings: {
+            stability: 0.75,
+            similarity_boost: 0.75,
+            style: 0.5,
+            use_speaker_boost: true
+          }
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate speech');
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+    } catch (error) {
+      console.error('Text-to-speech error:', error);
       toast({
-        title: "Not Supported",
-        description: "Text-to-speech is not supported in your browser",
+        title: "Voice Error",
+        description: "Failed to generate speech. Please check your API key.",
         variant: "destructive"
       });
     }
